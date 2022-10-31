@@ -1,0 +1,97 @@
+
+        ContaCorrente contaCorrente = new ContaCorrente(1,500);
+        ContaPoupanca contaPoupanca = new ContaPoupanca(2,100);
+        Relatorio relatorio = new Relatorio();
+
+        while(true) {
+
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("\n1 - Conta corrente");
+            System.out.println("2 - Conta poupança");
+
+            int escolha =  sc.nextInt();
+
+            while(escolha!=0) {
+                if (escolha == 1) {
+                    System.out.println("\nO que deseja fazer? ");
+                    System.out.println("1 - SACAR");
+                    System.out.println("2 - DEPOSITAR");
+                    System.out.println("3 - RELATÓRIO");
+                    System.out.println("4 - TRANSFERIR");
+                    System.out.println("0 - VOLTAR");
+
+                    int opcao = sc.nextInt();
+
+                    switch (opcao) {
+                        case 1 -> {
+                            System.out.println("Quanto deseja sacar? ");
+                            double saque = sc.nextInt();
+                            contaCorrente.sacar(saque);
+                        }
+                        case 2 -> {
+                            System.out.println("Quanto deseja depositar? ");
+                            double deposito = sc.nextInt();
+                            contaCorrente.depositar(deposito);
+                        }
+                        case 3 -> {
+                            relatorio.gerarRelatorio(contaCorrente);
+                        }
+                        case 4 -> {
+                            System.out.println("Quanto deseja transferir da sua conta corrente para a poupança? ");
+                            double transferencia = sc.nextDouble();
+                            contaCorrente.transferir(transferencia, contaPoupanca);
+                        }
+                        case 0 -> {
+                            escolha = 0;
+                        }
+                        default -> {
+                            break;
+                        }
+                    }
+
+                }
+                else if (escolha == 2) {
+
+                    System.out.println("\nO que deseja fazer? ");
+                    System.out.println("1 - SACAR");
+                    System.out.println("2 - DEPOSITAR");
+                    System.out.println("3 - RELATÓRIO");
+                    System.out.println("4 - TRANSFERIR");
+                    System.out.println("0 - VOLTAR");
+
+                    int opcao = sc.nextInt();
+
+                    switch (opcao) {
+                        case 1 -> {
+                            System.out.println("Quanto deseja sacar? ");
+                            double saque = sc.nextInt();
+                            contaPoupanca.sacar(saque);
+                        }
+                        case 2 -> {
+                            System.out.println("Quanto deseja depositar? ");
+                            double deposito = sc.nextInt();
+                            contaPoupanca.depositar(deposito);
+                        }
+                        case 3 -> {
+                            relatorio.gerarRelatorio(contaPoupanca);
+                        }
+                        case 4 -> {
+                            System.out.println("Quanto deseja transferir da sua conta poupança para a corrente? ");
+                            double transferencia = sc.nextDouble();
+                            contaPoupanca.transferir(transferencia, contaCorrente);
+                        }
+                        case 0 -> {
+                            escolha = 0;
+                        }
+                        default -> {
+                            break;
+                        }
+                    }
+                }
+                else {
+                    break;
+                }
+            }
+
+        }
